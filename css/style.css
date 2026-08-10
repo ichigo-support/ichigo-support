@@ -44,7 +44,7 @@ body {
 
 .small {
   font-size: 14px;
-  color: #aaa;
+  color: #767676;
 }
 
 /* css変数 */
@@ -108,7 +108,9 @@ nav {
 main {
   flex: 1;
   padding: 16px;
-  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 
   h2 {
     font-weight: normal;
@@ -147,7 +149,28 @@ ul.main-list {
   margin-top: 12px;
 
   li {
-    padding: 8px 0;
+    padding: 10px 4px;
+    line-height: 1.6;
+  }
+
+  &.copyable li {
+    border-radius: 8px;
+    padding: 10px 12px;
+
+    &:nth-child(even) {
+      background: var(--base-color);
+    }
+
+    span::after {
+      content: '📋';
+      margin-left: 6px;
+      font-size: 0.75em;
+      opacity: 0.3;
+    }
+
+    span:hover::after {
+      opacity: 0.8;
+    }
   }
 }
 
@@ -377,4 +400,39 @@ ul.main-list {
 #toast.show {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* トップに戻るボタン */
+
+#back-to-top {
+  position: fixed;
+  right: 30px;
+  bottom: 90px;
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 50%;
+  background: var(--brand-color);
+  color: #fff;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: all 0.25s ease;
+  z-index: 100;
+}
+
+#back-to-top:hover {
+  background: var(--hover-color);
+}
+
+#back-to-top.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }

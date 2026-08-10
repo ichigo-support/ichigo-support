@@ -38,6 +38,24 @@
         link.parentNode.classList.remove('current');
       }
     });
+
+    const main = document.querySelector('main');
+    if (main) {
+      const backToTop = document.createElement('button');
+      backToTop.id = 'back-to-top';
+      backToTop.type = 'button';
+      backToTop.setAttribute('aria-label', 'ページの先頭に戻る');
+      backToTop.innerHTML = '<i class="bi bi-arrow-up"></i>';
+      document.body.appendChild(backToTop);
+
+      main.addEventListener('scroll', () => {
+        backToTop.classList.toggle('show', main.scrollTop > 400);
+      });
+
+      backToTop.addEventListener('click', () => {
+        main.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
   });
 
 
