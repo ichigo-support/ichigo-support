@@ -160,17 +160,6 @@ ul.main-list {
     &:nth-child(even) {
       background: var(--base-color);
     }
-
-    span::after {
-      content: '📋';
-      margin-left: 6px;
-      font-size: 0.75em;
-      opacity: 0.3;
-    }
-
-    span:hover::after {
-      opacity: 0.8;
-    }
   }
 }
 
@@ -200,7 +189,9 @@ ul.main-list {
 .routine>.container,
 .tech>.container,
 .trouble>.container,
-.other>.container {
+.other>.container,
+.faq>.container,
+.standby>.container {
   background: #fafafa;
   margin-top: 16px;
   border-radius: 8px;
@@ -221,9 +212,10 @@ ul.main-list {
 
 /* 待機姿勢 */
 
-
-.routine>.container .standby>div {
+.routine>.container .standby>div,
+.standby>.container section {
   display: flex;
+  align-items: flex-start;
   gap: 32px;
 
   img {
@@ -238,7 +230,6 @@ ul.main-list {
     }
   }
 }
-
 
 /* 会話のテク */
 
@@ -261,29 +252,74 @@ ul.main-list {
 
         li {
           display: flex;
+          align-items: flex-end;
+          gap: 8px;
 
           &+& {
             margin-top: 16px;
           }
 
-          & span {
+          & .avatar {
+            flex: none;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            font-weight: 700;
+          }
+
+          & span:not(.avatar) {
+            position: relative;
             padding: 8px 12px;
             border-radius: 12px;
           }
         }
 
         li.girl {
-          justify-content: flex-end;
+          flex-direction: row-reverse;
 
-          & span {
+          & .avatar {
             background: #62a1ff;
             color: #fff;
+          }
+
+          & span:not(.avatar) {
+            background: #62a1ff;
+            color: #fff;
+
+            &::before {
+              content: '';
+              position: absolute;
+              right: -6px;
+              bottom: 9px;
+              border-width: 6px 0 6px 8px;
+              border-style: solid;
+              border-color: transparent transparent transparent #62a1ff;
+            }
           }
         }
 
         li.customer {
-          & span {
+          & .avatar {
+            background: var(--gray-color);
+            color: #fff;
+          }
+
+          & span:not(.avatar) {
             background: #f2f5ff;
+
+            &::before {
+              content: '';
+              position: absolute;
+              left: -6px;
+              bottom: 9px;
+              border-width: 6px 8px 6px 0;
+              border-style: solid;
+              border-color: transparent #f2f5ff transparent transparent;
+            }
           }
         }
       }
@@ -294,7 +330,20 @@ ul.main-list {
       }
 
       p {
-        color: #ff3333;
+        position: relative;
+        padding: 10px 12px 10px 34px;
+        background: #fff0f0;
+        border-radius: 8px;
+        color: #d6336c;
+        line-height: 1.6;
+
+        &::before {
+          content: '💡';
+          position: absolute;
+          left: 10px;
+          top: 9px;
+          font-size: 14px;
+        }
       }
     }
   }
@@ -305,6 +354,7 @@ ul.main-list {
 .faq>.container {
   section {
     background: #fafafa;
+    margin-top: 0;
     padding: 16px 8px;
 
     &:nth-child(even) {
@@ -343,7 +393,6 @@ ul.main-list {
   }
 }
 
-
 /* スタート＋稼ぐコツ＋トラブル */
 
 .start>.container,
@@ -357,7 +406,54 @@ ul.main-list {
     img {
       margin-top: 16px;
     }
+
+    @media (width >=700px) {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      column-gap: 24px;
+
+      h4 {
+        flex-basis: 100%;
+      }
+
+      p {
+        flex: 1 1 220px;
+      }
+
+      img {
+        flex: 0 1 300px;
+        max-width: 300px;
+      }
+    }
   }
+}
+
+/* 画像の拡大表示（ライトボックス） */
+
+main img {
+  cursor: zoom-in;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  cursor: zoom-out;
+  z-index: 1000;
+}
+
+.lightbox img {
+  width: auto;
+  max-width: 90vw;
+  max-height: 90vh;
+  border-radius: 8px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  cursor: zoom-out;
 }
 
 /* その他 */

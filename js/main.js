@@ -14,8 +14,23 @@
 
   document.querySelectorAll(".copyable li span").forEach(item => {
     item.addEventListener("click", () => {
-      navigator.clipboard.writeText(item.textContent);
+      navigator.clipboard.writeText(item.innerText);
       showToast("コピーしました ✅");
+    });
+  });
+
+  document.querySelectorAll("main img").forEach(image => {
+    image.addEventListener("click", () => {
+      const overlay = document.createElement("div");
+      overlay.className = "lightbox";
+
+      const big = document.createElement("img");
+      big.src = image.src;
+      big.alt = image.alt;
+
+      overlay.appendChild(big);
+      overlay.addEventListener("click", () => overlay.remove());
+      document.body.appendChild(overlay);
     });
   });
 
