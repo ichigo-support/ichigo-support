@@ -50,11 +50,11 @@ body {
 /* css変数 */
 
 :root {
-  --brand-color: #1f76f9;
-  --hover-color: #2880ff;
-  --serect-color: #1660b9;
+  --brand-color: #2f8fd1;
+  --hover-color: #4aa3de;
+  --serect-color: #256e9e;
   --gray-color: #999;
-  --base-color: #f2f5ff;
+  --base-color: #e3f0fa;
 }
 
 /* nav */
@@ -282,12 +282,12 @@ ul.main-list {
           flex-direction: row-reverse;
 
           & .avatar {
-            background: #62a1ff;
+            background: #f3b0cc;
             color: #fff;
           }
 
           & span:not(.avatar) {
-            background: #62a1ff;
+            background: #f3b0cc;
             color: #fff;
 
             &::before {
@@ -297,19 +297,20 @@ ul.main-list {
               bottom: 9px;
               border-width: 6px 0 6px 8px;
               border-style: solid;
-              border-color: transparent transparent transparent #62a1ff;
+              border-color: transparent transparent transparent #f3b0cc;
             }
           }
         }
 
         li.customer {
           & .avatar {
-            background: var(--gray-color);
+            background: #6fabd6;
             color: #fff;
           }
 
           & span:not(.avatar) {
-            background: #f2f5ff;
+            background: #6fabd6;
+            color: #fff;
 
             &::before {
               content: '';
@@ -318,7 +319,7 @@ ul.main-list {
               bottom: 9px;
               border-width: 6px 8px 6px 0;
               border-style: solid;
-              border-color: transparent #f2f5ff transparent transparent;
+              border-color: transparent #6fabd6 transparent transparent;
             }
           }
         }
@@ -356,13 +357,14 @@ ul.main-list {
     background: #fafafa;
     margin-top: 0;
     padding: 16px 8px;
+    border-radius: 0;
 
     &:nth-child(even) {
       background: #fff;
     }
 
     &+& {
-      border-top: 1px solid #ccc;
+      box-shadow: inset 0 1px 0 #ccc;
     }
 
     h4 {
