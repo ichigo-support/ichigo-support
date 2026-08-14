@@ -12,7 +12,7 @@
     }, 2000);
   }
 
-  document.querySelectorAll(".copyable li span").forEach(item => {
+  document.querySelectorAll(".copyable li").forEach(item => {
     item.addEventListener("click", () => {
       navigator.clipboard.writeText(item.innerText);
       showToast("コピーしました ✅");
